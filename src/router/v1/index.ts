@@ -1,14 +1,8 @@
-import express, { Router } from 'express'
-import pingRouter from './router'
-import { hangHandler } from '../../controller/hanghandler'
-import { PingHandler } from '../../controller/ping'
+import express from 'express';
+import pingRouter from './ping.router';
 
-const v1 = express.Router()
+const v1Router = express.Router();
 
-v1.get('/', PingHandler)
+v1Router.use('/ping',  pingRouter);
 
-v1.get('/ping', PingHandler)
-
-v1.use('/hang',hangHandler)
-
-export default v1
+export default v1Router;

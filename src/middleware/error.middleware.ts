@@ -1,9 +1,20 @@
 import { NextFunction, Request, Response } from "express";
+import { AppError } from "../utils/errors/app.error";
+export const appErrorHandler = (err: AppError, req: Request, res: Response, next: NextFunction) => {
 
-export const anyError = (err:any,req: Request,res: Response,next: NextFunction)=>{
+    console.log(err);
 
-    res.status(501).json({
+    res.status(err.statusCode).json({
         success: false,
-        message: "Invalid Request"
-    })
+        message: err.message
+    });
+}
+
+export const genericErrorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
+    console.log(err);
+
+    res.status(500).json({
+        success: false,
+        message: "Internal Server Error"
+    });
 }

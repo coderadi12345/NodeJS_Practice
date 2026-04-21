@@ -1,15 +1,22 @@
-import { ServerConfig } from "./config";
-import { anyError } from "./middleware/error.middleware";
-import v1 from "./router/v1";
-const express = require("express");
-
+import express from 'express';
+import { serverConfig } from './config';
+import v1Router from './router/v1';
+import logger from './config/logger';
+import { appErrorHandler, genericErrorHandler } from './middleware/error.middleware';
+import { attachCorrelationIdMiddleware } from './middleware/correlation';
 const app = express();
-app.use(express.json())
 
-app.use('/v1/router',v1)
+app.use(express.json());
 
-app.use(anyError)
 
-app.listen(ServerConfig.PORT, () => {
-  console.log(`Server running on port ${ServerConfig.PORT}`);
+
+app.use(attachCorrelationIdMiddleware);
+app.use('/api/v1', v1Router);
+
+app.use(appErrorHandler);
+app.use(genericErrorHandler);
+
+app.listen(serverConfig.PORT, () => {
+    logger.info(`Server is running on http://localhost:${serverConfig.PORT}`);
+    logger.info(`Press Ctrl+C to stop the server.`);
 });

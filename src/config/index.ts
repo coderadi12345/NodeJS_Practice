@@ -1,14 +1,16 @@
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 
-export function loadEnv()  {
-    dotenv.config()
-
-}
-type serverConfig = {
+type ServerConfig = {
     PORT: number
 }
-loadEnv()
 
-export const ServerConfig: serverConfig= {
-    PORT : 3000
+function loadEnv() {
+    dotenv.config();
+    console.log(`Environment variables loaded`);
 }
+
+loadEnv();
+
+export const serverConfig: ServerConfig = {
+    PORT: Number(process.env.PORT) || 3001
+};
