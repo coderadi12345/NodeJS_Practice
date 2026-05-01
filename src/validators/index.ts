@@ -5,24 +5,21 @@ import { ZodSchema } from "zod";
 export const validateRequestBody = (schema: ZodSchema) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-
             logger.info("Validating request body");
             await schema.parseAsync(req.body);
             logger.info("Request body is valid");
             next();
 
-        } catch (error) {
-            logger.error("Request body is invalid");
-            res.status(400).json({
-                message: "Invalid request body",
-                success: false,
-                error: error
-            });
-            
-        }
+        } catch (error) { 
+
+    res.status(400).json({
+        message: "Invalid request body",
+        success: false,
+        error: error,
+    });
+}
     }
 }
-
 
 export const validateQueryParams = (schema: ZodSchema) => {
     return async (req: Request, res: Response, next: NextFunction) => {
@@ -31,7 +28,7 @@ export const validateQueryParams = (schema: ZodSchema) => {
             await schema.parseAsync(req.query);
             console.log("Query params are valid");
             next();
-
+            
         } catch (error) {
 
             res.status(400).json({

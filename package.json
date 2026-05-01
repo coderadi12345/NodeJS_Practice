@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.ts",
-    "migrate":"sequelize-cli db:migrate",
+    "start": "nodemon --ext ts,js src/index.ts",
+    "migrate": "sequelize-cli db:migrate",
     "rollback": "sequelize-cli db:migrate:undo"
   },
   "keywords": [],
@@ -15,6 +15,7 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "http-status-codes": "^2.3.0",
     "mysql2": "^3.22.2",
     "nodemon": "^3.1.14",
     "sequelize": "^6.37.8",

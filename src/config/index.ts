@@ -6,10 +6,10 @@ type ServerConfig = {
 
 type DBConfig = {
 
-    DB_HOST: String,
-    DB_USER: String,
-    DB_PASSWORD: String,
-    DB_NAME: String
+    DB_HOST: string,
+    DB_USER: string,
+    DB_PASSWORD: string,
+    DB_NAME: string
 }
 
 function loadEnv() {
@@ -18,8 +18,6 @@ function loadEnv() {
 }
 
 loadEnv();
-
-
 
 export const serverConfig: ServerConfig = {
     PORT: Number(process.env.PORT) || 3001
