@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import logger from "../config/logger";
 import { ZodSchema } from "zod";
+import { StatusCodes } from "http-status-codes";
 
 export const validateRequestBody = (schema: ZodSchema) => {
     return async (req: Request, res: Response, next: NextFunction) => {
@@ -12,7 +13,7 @@ export const validateRequestBody = (schema: ZodSchema) => {
 
         } catch (error) { 
 
-    res.status(400).json({
+    res.status(StatusCodes.FORBIDDEN).json({
         message: "Invalid request body",
         success: false,
         error: error,
@@ -31,7 +32,7 @@ export const validateQueryParams = (schema: ZodSchema) => {
             
         } catch (error) {
 
-            res.status(400).json({
+            res.status(StatusCodes.FORBIDDEN).json({
                 message: "Invalid query params",
                 success: false,
                 error: error

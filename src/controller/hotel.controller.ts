@@ -6,7 +6,7 @@ export async function createHotelHandler(req: Request , res: Response, next: Nex
 
   const hotelResponse = await hotelService(req.body)
 
-    res.status(StatusCodes.OK).json({
+    res.status(StatusCodes.CREATED).json({
         message: 'Hotel Created Successfully',
         data: hotelResponse,
         success: true
