@@ -1,5 +1,6 @@
+import { date } from "zod";
 import { hotelCreateDTO } from "../dto/hotel.dto";
-import { createHotel, getAllHotels,getHotelById, softDeleteHotel } from "../repositories/hotel.repositories";
+import { createHotel, getAllHotels,getHotelById, softDeleteHotel, updateHotel } from "../repositories/hotel.repositories";
 
 export async function hotelService(hotelData:hotelCreateDTO){
 
@@ -20,4 +21,9 @@ export async function getAllHotelService () {
 export async function deleteHotelService(id: number) {
     const response = await softDeleteHotel(id)
     return response
+}
+export async function updateHotelService(id:number,data:any){
+
+    const hotel  = await updateHotel(id,data)
+    return hotel
 }

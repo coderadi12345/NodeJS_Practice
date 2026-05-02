@@ -8,7 +8,6 @@ import { sequelize } from './db/models/sequelize';
 const app = express();
 
 app.use(express.json());
-
 app.use(attachCorrelationIdMiddleware);
 app.use('/api/v1', v1Router);
 

@@ -59,3 +59,14 @@ export async function softDeleteHotel(id:number) {
     logger.info(`Hotel soft deleted: ${hotel.id} `)
     return true
 }
+
+export async function updateHotel(id:number,data:any){
+    const hotel = await Hotel.findByPk(id)
+
+    if(!hotel){
+        logger.info(`Hotel Not found: ${id}`)
+        throw new NotFoundError("Hotel Not found")
+    }
+    await hotel.update(data)
+    return hotel
+}
