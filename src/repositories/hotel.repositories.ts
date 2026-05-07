@@ -48,7 +48,7 @@ export async function getAllHotels(){
 
 export async function softDeleteHotel(id:number) {
     const hotel = await Hotel.findByPk(id)
-
+ 
     if(!hotel){
         logger.info(`Hotel not found: ${id}`)
         throw new NotFoundError(`Hotel with id ${id} not found`)
