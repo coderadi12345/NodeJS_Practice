@@ -70,3 +70,4 @@ export async function updateHotel(id:number,data:any){
     await hotel.update(data)
     return hotel
 }
+
