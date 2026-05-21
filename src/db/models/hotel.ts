@@ -6,7 +6,6 @@ import {
   CreationOptional
 } from "sequelize";
 import { sequelize } from "./sequelize";
-
 export class Hotel extends Model<
   InferAttributes<Hotel>,
   InferCreationAttributes<Hotel>
